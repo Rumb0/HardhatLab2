@@ -7,4 +7,12 @@ contract KekiToken is ERC20 {
     constructor(uint256 initialSupply) ERC20("KekiToken", "KEK") {
         _mint(msg.sender, initialSupply);
     }
+
+    struct Test {
+        int weight;
+        bool is_pasted;
+        address address;
+        bytes4 identifier;
+    }
+
 }
