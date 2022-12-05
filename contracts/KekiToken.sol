@@ -36,8 +36,8 @@ contract KekiToken is ERC20 {
         c.isLaughable = isLaughable;
     }
 
-    function getMemeByID(uint structID) public returns (Meme memory targetMeme) {
-        targetMeme = memeIDs[structID];
+    function getMemeByID(uint memeID) public returns (Meme memory targetMeme) {
+        targetMeme = memeIDs[memeID];
     }
 
     function getMemeByAddress(address memeAddress) public returns (Meme memory targetMeme) {
