@@ -4,7 +4,7 @@ async function main() {
   const initialSupply = ethers.utils.parseEther("1337");
 
   const KekiToken = await ethers.getContractFactory("KekiToken");
-  const kekiToken= await KekiToken.deploy(initialSupply);
+  const kekiToken = await KekiToken.deploy(initialSupply);
 
   await kekiToken.deployed();
 
