@@ -40,33 +40,31 @@ describe("Token contract", function () {
     );
   });
 
+
   it("Should fail if meme-map by address doesn't work", async function () {
     const kekiToken = await loadFixture(deployTokenFixture);
     const [owner, addr1, addr2] = await ethers.getSigners();
     const initialOwnerBalance = await kekiToken.balanceOf(owner.address);
 
-    const expectedMemeID = await kekiToken.newMeme("0x0000000000000000000000000000000000000000", false);
+    const expectedMemeAddres = "0x1100000000000000000000000000000000000011"
+    const expectedMemeID = 0;
+    const expectedMemeO = await kekiToken.newMeme(expectedMemeAddres, false);
     
-    const actualMeme = await kekiToken.getMemeByAddress("0x0000000000000000000000000000000000000000");
+    const actualMeme = await kekiToken.getMemeByAddress(expectedMemeAddres);
 
-    expect(actualMeme.ID).to.equal(expectedMemeID.value);
+    expect(actualMeme.ID).to.equal(expectedMemeID);
   });
 
-  
+
   it("Should fail if meme-map by ID doesn't work", async function () {
     const kekiToken = await loadFixture(deployTokenFixture);
-    const [owner, addr1, addr2] = await ethers.getSigners();
-    const initialOwnerBalance = await kekiToken.balanceOf(owner.address);
 
-    const expectedMemeID1 = await kekiToken.newMeme("0x0000000000000000000000000000000000000000", false);
-    const expectedMemeID2 = await kekiToken.newMeme("0x0000000000000000000000000000000000000001", true);
+    const expectedMemeAddres = "0x1100000000000000000000000000000000000011"
+    const expectedMemeID = 0;
 
-    const memeByAddress = await kekiToken.getMemeByAddress("0x0000000000000000000000000000000000000000");
-    const memeByID = await kekiToken.getMemeByID(expectedMemeID1.value);
-    expect(memeByID.memeAddress).to.equal(memeByAddress.memeAddress);
+    const expectedMemeO = await kekiToken.newMeme(expectedMemeAddres, true);
+    const actualMeme = await kekiToken.getMemeByID(expectedMemeID);
 
-    const memeByAddress2 = await kekiToken.getMemeByAddress("0x0000000000000000000000000000000000000001");
-    const memeByID2 = await kekiToken.getMemeByID(expectedMemeID2.value);
-    expect(memeByID2.memeAddress).to.equal(memeByAddress2.memeAddress);
+    expect(actualMeme.memeAddress).to.equal(expectedMemeAddres);
   });
 });

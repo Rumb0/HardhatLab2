@@ -43,6 +43,6 @@ contract KekiToken is ERC20 {
     }
 
     function getMemeByAddress(address memeAddress) public view returns (Meme memory targetMeme) {
-        targetMeme = memeAddresses[memeAddress];
+        targetMeme = memeAddresses[address(memeAddress)];
     }
 }
